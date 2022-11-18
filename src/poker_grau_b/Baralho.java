@@ -1,27 +1,11 @@
 package poker_grau_b;
 
+import java.util.Random;
+
 public class Baralho {
 	private int quantidadeCartas = 52;
 	private Cartas[] cartasUsadas;
-	
-	public void embaralhar() {
-		
-	}
-	
-	public void trocarCarta() {
-		
-	}
-	
-	public void descartarCarta() {
-		
-	}
 
-	
-	
-	
-	
-	
-	
 	public Baralho(int quantidadeCartas, Cartas[] cartasUsadas) {
 		super();
 		this.quantidadeCartas = quantidadeCartas;
@@ -42,5 +26,26 @@ public class Baralho {
 
 	public void setCartasUsadas(Cartas[] cartasUsadas) {
 		this.cartasUsadas = cartasUsadas;
+	}
+	
+	
+	public void embaralhar(Cartas[] cartasUsadas) {
+		Random random = new Random();
+		for (int i=0; i < (cartasUsadas.length - 1); i++) {
+			int j = random.nextInt(cartasUsadas.length);
+			Cartas temp = cartasUsadas[i];
+			cartasUsadas[i] = cartasUsadas[j];
+			cartasUsadas[j] = temp;
+		}
+	}
+	
+	public void trocarCarta(Cartas primeira, Cartas segunda) {
+		Cartas temp = primeira;
+		primeira = segunda;
+		segunda = temp;
+	}
+	
+	public void descartarCarta() {
+		
 	}
 }
