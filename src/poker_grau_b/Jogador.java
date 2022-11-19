@@ -6,7 +6,7 @@ public class Jogador {
 	private String nome;
 	private int quantidadeFichas;
 	private int apostaAtual;
-	private Cartas[] cartasJogador = new Cartas[5];
+	private Cartas[] cartasJogador;
 	
 	public int consultaFichas() {
 		return quantidadeFichas;
@@ -23,10 +23,7 @@ public class Jogador {
 		System.out.println("Você apostou " + aposta + " fichas");
 		System.out.println("Você tem " + quantidadeFichas + " fichas");
 	}
-
 	
-	
-
 	public Jogador(String nome, int quantidadeFichas, int apostaAtual, Cartas[] cartasJogador) {
 		super();
 		this.nome = nome;
