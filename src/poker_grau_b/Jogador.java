@@ -4,7 +4,7 @@ public class Jogador {
 	private String nome;
 	private int quantidadeFichas;
 	private int apostaAtual;
-	private Operacoes op;
+	Cartas[] mao;
 	
 	public int consultaFichas() {
 		return quantidadeFichas;
@@ -18,11 +18,11 @@ public class Jogador {
 		System.out.println("Você tem " + quantidadeFichas + " fichas");
 	}
 	
-	public Jogador(String nome, int quantidadeFichas, int apostaAtual, Operacoes op) {
+	public Jogador(String nome, int quantidadeFichas, int apostaAtual, Cartas[] mao) {
 		this.nome = nome;
 		this.quantidadeFichas = quantidadeFichas;
 		this.apostaAtual = apostaAtual;
-		this.op = op;
+		this.mao = mao;
 	}
 
 	public String getNome() {
@@ -48,17 +48,12 @@ public class Jogador {
 	public void setApostaAtual(int apostaAtual) {
 		this.apostaAtual = apostaAtual;
 	}
-	
-	public Operacoes getOp() {
-		return op;
+
+	public Cartas[] getMao() {
+		return mao;
 	}
 
-	public void setOp(Operacoes op) {
-		this.op = op;
-	}
-
-	@Override
-	public String toString() {
-		return "Jogador [nome=" + nome + ", quantidadeFichas=" + quantidadeFichas + ", apostaAtual=" + apostaAtual + "]";
+	public void setMao(Cartas[] mao) {
+		this.mao = mao;
 	}
 }

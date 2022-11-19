@@ -24,29 +24,5 @@ public class Cartas {
 	public void setNaipe(String naipe) {
 		this.naipe = naipe;
 	}
+}
 	
-	public void imprimeCarta(){
-		for(int i = 0; i < 5; i++) {
-			if (valorCarta == 11){
-				System.out.printf("J de " + naipe);
-			}
-			
-			else if(valorCarta == 12){
-				System.out.printf("Q de " + naipe);
-			}
-			
-			else if(valorCarta == 13){
-				System.out.printf("K de " + naipe);
-			}
-			
-			else if(valorCarta == 14){
-				System.out.printf("A de " + naipe);
-			}
-			
-			else{
-				System.out.println(getValorCarta());
-				System.out.printf(" de " + naipe);
-			}	
-		}
-	}
-}	
