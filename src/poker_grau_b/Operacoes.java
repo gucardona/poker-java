@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class Operacoes {
 	
-	public Cartas[] geraMao() {
+	
+	public String[] geraMao() {
 		Random random = new Random();
 		
 		String[] cartasMaoNumeroConv = new String[5];
@@ -56,13 +57,11 @@ public class Operacoes {
 			if(numParaNaipe == 4)
 				cartasMaoNaipe[i] = "Espadas";
 		}
-		
-		System.out.println("Sua mão:");
-		
-		String mao;
-		for(int i = 0; i < 5; i++)
-			mao = cartasMaoNumeroConv[i] + " de " + cartasMaoNaipe[i]);
-		return mao;
+
+		for(int i = 0; i < 5; i++) {
+			System.out.println(cartasMaoNumeroConv[i] + " de " + cartasMaoNaipe[i]);
+		}
+		return cartasMaoNaipe;
 	}
 	
 	public void trocarCarta(Cartas primeira, Cartas segunda) {

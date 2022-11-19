@@ -5,10 +5,10 @@ public class Principal {
 
 		Operacoes op = new Operacoes();
 
-		Jogador jogador1 = new Jogador(null, 0, 0, null);
+		Jogador jogador1 = new Jogador(Teclado.leString("Qual o seu nome? "), 0, 0, op);
 		
-		op.geraMao();
+		System.out.println("Cartas de " + jogador1.getNome());
+		jogador1.getOp().geraMao();
 		
-		jogador1.setCartasJogador(op.geraMao());
 	}
 }
