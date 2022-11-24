@@ -24,5 +24,10 @@ public class Cartas {
 	public void setNaipe(String naipe) {
 		this.naipe = naipe;
 	}
+
+	@Override
+	public String toString() {
+		return valorCarta + " de " + naipe;
+	}
 }
 	

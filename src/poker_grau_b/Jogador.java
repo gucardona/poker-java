@@ -56,4 +56,9 @@ public class Jogador {
 	public void setMao(Cartas[] mao) {
 		this.mao = mao;
 	}
+
+	@Override
+	public String toString() {
+		return "\nNome do jogador: " + nome + "\nQuantidade de fichas: " + quantidadeFichas + " fichas" + "\nAposta atual: " + apostaAtual + " fichas";
+	}
 }

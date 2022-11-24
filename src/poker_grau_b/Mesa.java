@@ -1,13 +1,16 @@
 package poker_grau_b;
 
+import java.util.Arrays;
+
 public class Mesa {
 	private int potApostas;
-	private int numeroJogadores;
-	private boolean dealer;
+	private Jogador[] jogadores;
+	private Jogador dealer;
 	
-	public Mesa(int potApostas, int numeroJogadores, boolean dealer) {
+	public Mesa(int potApostas, Jogador[] jogadores, Jogador dealer) {
+		super();
 		this.potApostas = potApostas;
-		this.numeroJogadores = numeroJogadores;
+		this.jogadores = jogadores;
 		this.dealer = dealer;
 	}
 
@@ -19,19 +22,25 @@ public class Mesa {
 		this.potApostas = potApostas;
 	}
 
-	public int getNumeroJogadores() {
-		return numeroJogadores;
+	public Jogador[] getJogadores() {
+		return jogadores;
 	}
 
-	public void setNumeroJogadores(int numeroJogadores) {
-		this.numeroJogadores = numeroJogadores;
+	public void setJogadores(Jogador[] jogadores) {
+		this.jogadores = jogadores;
 	}
 
-	public boolean isDealer() {
+	public Jogador getDealer() {
 		return dealer;
 	}
 
-	public void setDealer(boolean dealer) {
+	public void setDealer(Jogador dealer) {
 		this.dealer = dealer;
+	}
+
+	@Override
+	public String toString() {
+		return "Mesa [potApostas=" + potApostas + ", jogadores=" + Arrays.toString(jogadores) + ", dealer=" + dealer
+				+ "]";
 	}
 }

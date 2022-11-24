@@ -21,13 +21,6 @@ public class Operacoes {
 		return baralho;
 	}
 	
-	public void trocarCartaJogador(Jogador jogador, Cartas[] mao, Cartas cartaEscolhida) {
-		for(int i = 0; i < mao.length; i++) 
-			if(cartaEscolhida.equals(mao[i])) {
-				
-			}
-	}
-	
 	public Cartas[] embaralhar(Cartas[] baralho) {
 		for (int i=0; i < (baralho.length - 1); i++) {
 			int j = random.nextInt(baralho.length);
@@ -43,10 +36,55 @@ public class Operacoes {
 		for(int i = 0; i < jogadores.length; i++) {
 			Cartas[] mao = new Cartas[5];
 			for(int j = 0; j < mao.length; j++) {
-				mao[j] = mao[k];
-				mao[k] = null;
+				mao[j] = baralho[k];
+				baralho[k] = null;
+				k++;
 			}
 			jogadores[i].setMao(mao);
 		}
+	}
+	
+	public void trocarCartaJogador(Jogador jogador, Cartas[] mao, Cartas quantidadeTrocar, Cartas cartasEscolhidas) {
+		for(int i = 0; i < mao.length; i++) 
+			if(cartasEscolhidas.equals(mao[i])) {		
+			}
+	}
+	
+	
+	
+	public boolean checarRoyalFlush(Jogador[] jogadores) {
+		
+	}
+	
+	public boolean checarStraightFlush(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarFullHouse(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarFlush(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarSequencia(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarTrinca(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarDoisPares(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarPar(Jogador[] jogadores) {
+
+	}
+	
+	public boolean checarCartaAlta(Jogador[] jogadores) {
+
 	}
 }
