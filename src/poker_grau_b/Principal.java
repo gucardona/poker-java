@@ -28,20 +28,6 @@ public class Principal {
 			op.geraMaoJogadores(jogadores, baralhoEmbaralhado);
 			op.ordenarMao(jogador);
 			
-			jogador.getMao()[0].setValorCarta(11);
-			jogador.getMao()[1].setValorCarta(9);
-			jogador.getMao()[2].setValorCarta(12);
-			jogador.getMao()[3].setValorCarta(9);
-			jogador.getMao()[4].setValorCarta(11);
-			jogador.getMao()[0].setNaipe("Copas");
-			jogador.getMao()[1].setNaipe("Copas");
-			jogador.getMao()[2].setNaipe("Copas");
-			jogador.getMao()[3].setNaipe("Copas");
-			jogador.getMao()[4].setNaipe("Copas");
-			
-			op.ordenarMao(jogador);
-			
-			
 			System.out.println(jogador.toString());
 			System.out.printf("Mão atual de %s: ", jogador.getNome());
 			System.out.println(Arrays.toString(jogador.getMao()));
@@ -80,6 +66,10 @@ public class Principal {
 			jogador.setQuantidadeFichas(0);
 		}
 
+		
+		
+		
+		
 		System.out.println();
 		System.out.println("Carta mais alta de " + jogador.getNome() + ": " + op.checarCartaAlta(jogador));
 		System.out.println(jogador.getNome() + " tem par? " + op.checarPar(jogador));
