@@ -1,5 +1,7 @@
 package poker_grau_b;
 
+//GUSTAVO PARCIANELLO CARDONA
+
 public class Jogador {
 	private String nome;
 	private int quantidadeFichas;

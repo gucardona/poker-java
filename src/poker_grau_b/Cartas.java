@@ -1,5 +1,7 @@
 package poker_grau_b;
 
+//GUSTAVO PARCIANELLO CARDONA
+
 public class Cartas {
 	private int valorCarta;
 	private String naipe;
