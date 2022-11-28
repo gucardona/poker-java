@@ -1,12 +1,14 @@
 package poker_grau_b;
 
 import java.util.Arrays;
+import java.util.Random;
 
 //GUSTAVO PARCIANELLO CARDONA
 
 public class Principal {
 	public static void main(String[] args) {
 		Controle op = new Controle();
+		Random random = new Random();
 		
 		Jogador jogador = new Jogador(Teclado.leString("Qual o seu nome? "), 200, 0, null);
 		Jogador computador1 = new Jogador("Computador Jonas", 200, 0, null);
@@ -18,9 +20,7 @@ public class Principal {
 		
 		Mesa mesa = new Mesa(1, 0, jogadores, jogador);
 		
-		int rodada = 1;
-		
-		while(jogador.getQuantidadeFichas() > 0) {
+		while(true) {
 			
 			Cartas[] baralho = op.geraBaralho();
 			Cartas[] baralhoEmbaralhado = op.embaralhar(baralho);
@@ -50,27 +50,68 @@ public class Principal {
 			
 			op.trocarCartaJogador(jogador, Teclado.leInt("Quantidade de cartas que deseja trocar: "), 0);
 			
+			op.trocarCartaComputador(computador1, 1 + random.nextInt(6), 0);
+			op.trocarCartaComputador(computador2, 1 + random.nextInt(6), 0);
+			op.trocarCartaComputador(computador3, 1 + random.nextInt(6), 0);
+			op.trocarCartaComputador(computador4, 1 + random.nextInt(6), 0);
+			
 			op.ordenarMao(jogador);
 			
+			op.ordenarMao(computador1);
+			op.ordenarMao(computador2);
+			op.ordenarMao(computador3);
+			op.ordenarMao(computador4);
+			
 			while(true) {
+				int i = 0;
+				int rodada = 1;
+				
 				System.out.println();
 				System.out.println(mesa.getRodada() + "ª " + " rodada de apostas");
 				System.out.println();
 				
+				if(i == 0) {
+					mesa.setDealer(jogador);
+					computador4.apostar(5);
+					computador3.apostar(10);
+				}
 				
-
+				else if(i == 1) {
+					mesa.setDealer(computador4);
+					computador3.apostar(5);
+					computador2.apostar(10);
+				}
 				
+				else if(i == 2) {
+					mesa.setDealer(computador3);
+					computador2.apostar(5);
+					computador1.apostar(10);
+				}
 				
-				mesa.setRodada(rodada++);
+				else if(i == 3) {
+					mesa.setDealer(computador2);
+					computador1.apostar(5);
+					jogador.apostar(10);
+				}
+				
+				else if(i == 4) {
+					mesa.setDealer(computador1);
+					jogador.apostar(5);
+					computador4.apostar(10);
+					i = 0;
+				}
+				
+				i++;
+				
+				rodada++;
+				mesa.setRodada(rodada);
+				
 				break;
 			}
 			
-			jogador.setQuantidadeFichas(0);
+			break;
 		}
 
-		
-		
-		
 		
 		System.out.println();
 		System.out.println("Carta mais alta de " + jogador.getNome() + ": " + op.checarCartaAlta(jogador));

@@ -84,6 +84,37 @@ public class Controle {
 		}
 	}
 	
+public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int escolhida) { // MÉTODO PARA O JOGADOR TROCAR CARTA CASO QUEIRA
+		
+		if(quantidadeTrocar < 1)
+			System.out.println(computador.getNome() + " não trocou nenhuma carta!\nContinuando...");
+		
+		for(int i = 0; i < quantidadeTrocar; i++) {
+			
+			escolhida = 1 + random.nextInt(6);
+			
+			String naipe = "Copas";
+			
+			if(random.nextInt(4) == 0)
+				naipe = "Copas";
+			else if(random.nextInt(4) == 1)
+				naipe = "Ouros";
+			else if(random.nextInt(4) == 2)
+				naipe = "Paus";
+			else if(random.nextInt(4) == 3)
+				naipe = "Espadas";
+			
+			System.out.println(Arrays.toString(computador.getMao()));
+			
+			Cartas novaCarta = new Cartas(1 + (random.nextInt(15)), naipe);
+			computador.getMao()[escolhida-1] = novaCarta;
+			
+			System.out.println(Arrays.toString(computador.getMao()));
+			
+			System.out.println("Carta de " + computador.getNome() + "trocada com sucesso!\nContinuando...");
+		}
+	}
+	
 	public void ordenarMao(Jogador jogador) { // ORDENA A MÃO (EM ORDEM CRESCENTE) PARA FICAR MAIS FÁCIL DE ANALISAR OS JOGOS POSSÍVEIS
 		
 		int temp = 0;
@@ -98,7 +129,31 @@ public class Controle {
 			}
 		}
 	}
+	
+	
+	public int pontuacaoMaoJogadores(Jogador jogador) {
 		
+		if(checarRoyalFlush(jogador) == true)
+			return 9;
+		else if(checarStraightFlush(jogador) == true)
+			return 8;
+		else if(checarQuadra(jogador) == true)
+			return 7;
+		else if(checarFullHouse(jogador) == true)
+			return 6;
+		else if(checarFlush(jogador) == true)
+			return 5;
+		else if(checarSequencia(jogador) == true)
+			return 4;
+		else if(checarTrinca(jogador) == true)
+			return 3;
+		else if(checarDoisPares(jogador) == true)
+			return 2;
+		else if(checarPar(jogador) == true)
+			return 1;
+		
+		return checarCartaAlta(jogador);
+	}
 	
 	
 	public boolean checarRoyalFlush(Jogador jogador) {
