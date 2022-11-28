@@ -50,6 +50,8 @@ public class Principal {
 			
 			op.trocarCartaJogador(jogador, Teclado.leInt("Quantidade de cartas que deseja trocar: "), 0);
 			
+			op.ordenarMao(jogador);
+			
 			while(true) {
 				System.out.println();
 				System.out.println(mesa.getRodada() + "ª " + " rodada de apostas");

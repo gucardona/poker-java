@@ -62,7 +62,7 @@ public class Controle {
 			while(escolhida > 5)
 				escolhida = Teclado.leInt("Você só tem 5 cartas na mão!\nPosicão da carta que deseja trocar: ");
 			
-			String naipe = null;
+			String naipe = "Copas";
 			
 			if(random.nextInt(4) == 0)
 				naipe = "Copas";
