@@ -14,10 +14,11 @@ public class Jogador {
 	
 	public void apostar(int aposta) {
 		int qntFichasAntes = quantidadeFichas;
-		quantidadeFichas -= apostaAtual;
-		System.out.println("Você tinha " + qntFichasAntes + " fichas");
-		System.out.println("Você apostou " + aposta + " fichas");
-		System.out.println("Você tem " + quantidadeFichas + " fichas");
+		quantidadeFichas -= aposta;
+		if(aposta == 0)
+			System.out.println(nome + " deu fold e está fora da rodada.");
+		else
+			System.out.println(nome + " tinha " + qntFichasAntes + " e apostou " + aposta + " fichas.");
 	}
 	
 	public Jogador(String nome, int quantidadeFichas, int apostaAtual, Cartas[] mao) {

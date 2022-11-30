@@ -48,7 +48,7 @@ public class Controle {
 	}
 	
 	public void trocarCartaJogador(Jogador jogador, int quantidadeTrocar, int escolhida) { // MÉTODO PARA O JOGADOR TROCAR CARTA CASO QUEIRA
-		
+		System.out.println();
 		if(quantidadeTrocar < 1)
 			System.out.println("Você não trocou nenhuma carta!\nContinuando...");
 		
@@ -58,11 +58,13 @@ public class Controle {
 		for(int i = 0; i < quantidadeTrocar; i++) {
 			
 			escolhida = Teclado.leInt("Posicão da carta que deseja trocar: ");
+			System.out.println();
 			
 			while(escolhida > 5)
 				escolhida = Teclado.leInt("Você só tem 5 cartas na mão!\nPosicão da carta que deseja trocar: ");
 			
 			String naipe = "Copas";
+			System.out.println();
 			
 			if(random.nextInt(4) == 0)
 				naipe = "Copas";
@@ -75,23 +77,24 @@ public class Controle {
 			
 			System.out.println(Arrays.toString(jogador.getMao()));
 			
-			Cartas novaCarta = new Cartas(1 + (random.nextInt(14)), naipe);
+			Cartas novaCarta = new Cartas(2 + (random.nextInt(14)), naipe);
 			jogador.getMao()[escolhida-1] = novaCarta;
 			
 			System.out.println(Arrays.toString(jogador.getMao()));
-			
+			System.out.println();
 			System.out.println("Carta trocada com sucesso!\nContinuando...");
+			System.out.println();
 		}
 	}
 	
-public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int escolhida) { // MÉTODO PARA O JOGADOR TROCAR CARTA CASO QUEIRA
+	public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int escolhida) { // MÉTODO PARA O JOGADOR TROCAR CARTA CASO QUEIRA
 		
 		if(quantidadeTrocar < 1)
 			System.out.println(computador.getNome() + " não trocou nenhuma carta!\nContinuando...");
 		
 		for(int i = 0; i < quantidadeTrocar; i++) {
 			
-			escolhida = 1 + random.nextInt(6);
+			escolhida = 1 + random.nextInt(5);
 			
 			String naipe = "Copas";
 			
@@ -104,15 +107,10 @@ public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int 
 			else if(random.nextInt(4) == 3)
 				naipe = "Espadas";
 			
-			System.out.println(Arrays.toString(computador.getMao()));
-			
-			Cartas novaCarta = new Cartas(1 + (random.nextInt(15)), naipe);
+			Cartas novaCarta = new Cartas(2 + (random.nextInt(14)), naipe);
 			computador.getMao()[escolhida-1] = novaCarta;
-			
-			System.out.println(Arrays.toString(computador.getMao()));
-			
-			System.out.println("Carta de " + computador.getNome() + "trocada com sucesso!\nContinuando...");
 		}
+		System.out.println("Cartas de " + computador.getNome() + " trocadas com sucesso.");
 	}
 	
 	public void ordenarMao(Jogador jogador) { // ORDENA A MÃO (EM ORDEM CRESCENTE) PARA FICAR MAIS FÁCIL DE ANALISAR OS JOGOS POSSÍVEIS
@@ -131,7 +129,7 @@ public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int 
 	}
 	
 	
-	public int pontuacaoMaoJogadores(Jogador jogador) {
+	public int pontuacaoMaoJogadores(Jogador jogador) { // COMPARA MÃO DOS JOGADORES COM OS JOGOS POSSÍVEIS E RETORNA UM INTEIRO PARA DEPOIS COMPARAR AS MÃOS DOS JOGADORES
 		
 		if(checarRoyalFlush(jogador) == true)
 			return 9;
@@ -152,9 +150,44 @@ public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int 
 		else if(checarPar(jogador) == true)
 			return 1;
 		
-		return checarCartaAlta(jogador);
+		else if(jogador.getApostaAtual() == 0)
+			return -1;
+		
+		else
+			return 0;
 	}
 	
+	public Jogador[] compararCartaMaisAlta(Jogador[] jogadores) {
+		return null;
+	}
+	
+	public int quantidadeFichasAposta(int blind, int jogadaAnterior) { // GERA DE FORMA ALEATÓRIA SE O COMPUTADOR VAI DAR FOLD OU APOSTAR
+		int numAleatorio = random.nextInt(3);
+		
+		if(numAleatorio == 0)
+			return 0;
+		
+		else if(numAleatorio == 1)
+			return blind;
+		
+		else if(numAleatorio == 2) {
+			
+			if(jogadaAnterior == 0)
+				return blind * (random.nextInt(20));
+			
+			else if(jogadaAnterior > 0) {
+				blind = jogadaAnterior;
+				
+				if(blind < 200)
+					return blind * (random.nextInt(20));
+				else
+					return 200;
+			}
+		}
+			
+		
+		return 0;
+	}
 	
 	public boolean checarRoyalFlush(Jogador jogador) {
 		if(jogador.getMao()[0].getValorCarta() == 10 && jogador.getMao()[1].getValorCarta() == 11 && jogador.getMao()[2].getValorCarta() == 12 &&
@@ -188,9 +221,9 @@ public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int 
 	
 	public boolean checarFullHouse(Jogador jogador) {
 		if(jogador.getMao()[0].getValorCarta() == jogador.getMao()[1].getValorCarta() &&
-		   jogador.getMao()[2].getValorCarta() == jogador.getMao()[3].getValorCarta() && jogador.getMao()[4].getValorCarta() != jogador.getMao()[0].getValorCarta() ||
+		   jogador.getMao()[2].getValorCarta() == jogador.getMao()[3].getValorCarta() && jogador.getMao()[2].getValorCarta() ==  jogador.getMao()[4].getValorCarta() && jogador.getMao()[4].getValorCarta() != jogador.getMao()[0].getValorCarta() ||
 		   jogador.getMao()[3].getValorCarta() == jogador.getMao()[4].getValorCarta() &&
-		   jogador.getMao()[0].getValorCarta() == jogador.getMao()[1].getValorCarta() && jogador.getMao()[2].getValorCarta() != jogador.getMao()[4].getValorCarta())
+		   jogador.getMao()[0].getValorCarta() == jogador.getMao()[1].getValorCarta() && jogador.getMao()[0].getValorCarta() ==  jogador.getMao()[2].getValorCarta() && jogador.getMao()[2].getValorCarta() != jogador.getMao()[4].getValorCarta())
 			return true;
 		return false;
 	}
@@ -252,7 +285,6 @@ public void trocarCartaComputador(Jogador computador, int quantidadeTrocar, int 
 		return false;
 	}
 
-	
 	public int checarCartaAlta(Jogador jogador) {
 		int cartaAlta = 0;
 		for(int i = 0; i < jogador.getMao().length; i++) {

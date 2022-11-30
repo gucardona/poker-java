@@ -32,4 +32,3 @@ public class Cartas {
 		return valorCarta + " de " + naipe;
 	}
 }
-	
