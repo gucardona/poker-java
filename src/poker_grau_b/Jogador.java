@@ -3,65 +3,74 @@ package poker_grau_b;
 //GUSTAVO PARCIANELLO CARDONA
 
 public class Jogador {
-	private String nome;
-	private int quantidadeFichas;
-	private int apostaAtual;
-	Cartas[] mao;
-	
-	public int consultaFichas() {
-		return quantidadeFichas;
-	}
-	
-	public void apostar(int aposta) {
-		int qntFichasAntes = quantidadeFichas;
-		quantidadeFichas -= aposta;
-		if(aposta == 0)
-			System.out.println(nome + " deu fold e está fora da rodada.");
-		else
-			System.out.println(nome + " tinha " + qntFichasAntes + " e apostou " + aposta + " fichas.");
-	}
-	
-	public Jogador(String nome, int quantidadeFichas, int apostaAtual, Cartas[] mao) {
-		this.nome = nome;
-		this.quantidadeFichas = quantidadeFichas;
-		this.apostaAtual = apostaAtual;
-		this.mao = mao;
+    private String nome;
+    private int quantidadeFichas;
+    private int apostaAtual;
+    Cartas[] mao;
+
+    public int consultaFichas() {
+	return quantidadeFichas;
+    }
+
+    public void apostar(int aposta) {
+	int qntFichasAntes = quantidadeFichas;
+
+	if (aposta > quantidadeFichas) {
+	    aposta = quantidadeFichas;
+	    System.out.println(nome + " apostou todas as fichas.");
 	}
 
-	public String getNome() {
-		return nome;
-	}
+	else if (aposta == 0)
+	    System.out.println(nome + " deu fold e estÃ¡ fora da rodada.");
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	else
+	    System.out.println(nome + " tinha " + qntFichasAntes + " e apostou " + aposta + " fichas.");
 
-	public int getQuantidadeFichas() {
-		return quantidadeFichas;
-	}
+	quantidadeFichas -= aposta;
+    }
 
-	public void setQuantidadeFichas(int quantidadeFichas) {
-		this.quantidadeFichas = quantidadeFichas;
-	}
+    public Jogador(String nome, int quantidadeFichas, int apostaAtual, Cartas[] mao) {
+	this.nome = nome;
+	this.quantidadeFichas = quantidadeFichas;
+	this.apostaAtual = apostaAtual;
+	this.mao = mao;
+    }
 
-	public int getApostaAtual() {
-		return apostaAtual;
-	}
+    public String getNome() {
+	return nome;
+    }
 
-	public void setApostaAtual(int apostaAtual) {
-		this.apostaAtual = apostaAtual;
-	}
+    public void setNome(String nome) {
+	this.nome = nome;
+    }
 
-	public Cartas[] getMao() {
-		return mao;
-	}
+    public int getQuantidadeFichas() {
+	return quantidadeFichas;
+    }
 
-	public void setMao(Cartas[] mao) {
-		this.mao = mao;
-	}
+    public void setQuantidadeFichas(int quantidadeFichas) {
+	this.quantidadeFichas = quantidadeFichas;
+    }
 
-	@Override
-	public String toString() {
-		return "\nNome do jogador: " + nome + "\nQuantidade de fichas: " + quantidadeFichas + " fichas" + "\nAposta atual: " + apostaAtual + " fichas";
-	}
+    public int getApostaAtual() {
+	return apostaAtual;
+    }
+
+    public void setApostaAtual(int apostaAtual) {
+	this.apostaAtual = apostaAtual;
+    }
+
+    public Cartas[] getMao() {
+	return mao;
+    }
+
+    public void setMao(Cartas[] mao) {
+	this.mao = mao;
+    }
+
+    @Override
+    public String toString() {
+	return ("\nNome do jogador: " + nome + "\nQuantidade de fichas: " + quantidadeFichas + " fichas"
+		+ "\nAposta atual: " + apostaAtual + " fichas");
+    }
 }
